@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Registered Users{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <div class="list-header">
+        <div>
+            <p class="eyebrow">Attendees</p>
+            <h1>Registered users</h1>
+        </div>
+        <a class="button secondary" href="{{ url_for('index') }}">New registration</a>
+    </div>
+
+    {% if registrations %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Event</th>
+                        <th>Registered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registration in registrations %}
+                        <tr>
+                            <td>{{ registration.name }}</td>
+                            <td>{{ registration.email }}</td>
+                            <td>{{ registration.event }}</td>
+                            <td>{{ registration.created_at }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="empty">No registrations yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

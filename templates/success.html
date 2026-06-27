@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Registration Successful{% endblock %}
+
+{% block content %}
+<section class="panel success">
+    <p class="eyebrow">Confirmed</p>
+    <h1>Registration successful</h1>
+
+    {% if registration %}
+        <p>{{ registration.name }} has been registered for {{ registration.event }}.</p>
+        <dl class="details">
+            <div>
+                <dt>Email</dt>
+                <dd>{{ registration.email }}</dd>
+            </div>
+            <div>
+                <dt>Registered</dt>
+                <dd>{{ registration.created_at }}</dd>
+            </div>
+        </dl>
+    {% else %}
+        <p>Your registration has been saved.</p>
+    {% endif %}
+
+    <div class="actions">
+        <a class="button" href="{{ url_for('index') }}">Add another</a>
+        <a class="button secondary" href="{{ url_for('users') }}">View users</a>
+    </div>
+</section>
+{% endblock %}
