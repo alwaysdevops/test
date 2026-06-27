@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Register for an Event{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <div class="intro">
+        <p class="eyebrow">Registration Desk</p>
+        <h1>Register for an upcoming event</h1>
+        <p>Save attendee details and keep the event list ready for review.</p>
+    </div>
+
+    {% if errors %}
+        <div class="alert" role="alert">
+            {% for error in errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form class="registration-form" method="post" action="{{ url_for('register') }}" novalidate>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" value="{{ form.name if form else '' }}" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{ form.email if form else '' }}" required>
+
+        <label for="event">Event</label>
+        <input id="event" name="event" type="text" value="{{ form.event if form else '' }}" required>
+
+        <button type="submit">Register</button>
+    </form>
+</section>
+{% endblock %}
